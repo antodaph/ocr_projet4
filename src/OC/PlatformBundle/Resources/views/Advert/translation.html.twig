@@ -1,0 +1,22 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/translation.html.twig #}
+
+<html>
+    <body>
+        <br><br>
+        Aujourd'hui nous sommes le {{ 'now'|localizeddate('full', 'none') }} et il est {{ 'now'|localizeddate('none', 'short') }}
+        <br><br>
+        {#{{ 'Hello'|trans }} {{ name }}!#}
+        {{ 'hello'|trans({'%name%': name}) }}
+
+        <h2>{{ 'charte.titre'|trans }}</h2>
+        <p>{{ 'charte.donnee.premier_paragraphe'|trans }}</p>
+        <p>{{ 'charte.donnee.deuxieme_paragraphe'|trans }}</p>
+        
+        <h2>{{ 'charte2.titre'|trans }}</h2>
+        {% for i in 0..2 %}
+            <p>{{ ('charte2.donnee.' ~ i )|trans }}</p>
+        {% endfor %}
+        
+
+    </body>
+</html>

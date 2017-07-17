@@ -1,0 +1,36 @@
+{# src/OC/CoreBundle/Resources/views/Core/index.html.twig #}
+
+{% extends "OCCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    
+        {# On affiche tous les messages flash dont le nom est « info » #}
+        {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">
+            <p>Message flash : {{ message }}</p>
+        </div>
+        {% endfor %}
+    
+    <h2>Page d'accueil de mon site</h2>
+
+    <h3>Les dernières annonces</h3>
+
+    <ul>
+        {% for advert in listAdverts %}
+            <li>
+            <a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
+            {{ advert.title }}
+            </a>
+            par {{ advert.author }},
+            le {{ advert.date|date('d/m/Y') }}
+            </li>
+        {% else %}
+            <li>Pas (encore !) d'annonces</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

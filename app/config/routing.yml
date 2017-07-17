@@ -1,0 +1,21 @@
+c_user:
+    resource: "@OCUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+oc_core:
+    resource: "@OCCoreBundle/Resources/config/routing.yml"
+
+oc_platform:
+    resource: "@OCPlatformBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/platform
+    requirements:
+        _locale: en|fr|de # les locales disponibles, séparées par des pipes « | »
+
+login:
+    path: /login
+    defaults:
+        _controller: OCUserBundle:Security:login
+
+logout:
+    path: /logout
+

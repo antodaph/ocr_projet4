@@ -1,0 +1,7 @@
+# src/OC/PlatformBundle/Resources/translations/validators.fr.yml
+
+password:
+    length:
+    # Attention ne pas oublier les guillemet car ces valeurs ne sont pas traduite mais juste substitué au retour de la translation 
+        short: "Vous avez entré {{ value }} caractères. Or, le mot de passe ne peut en comporter moins de {{ limit }}"
+        long:  "Vous avez entré {{ value }} caractères. Or, le mot de passe ne peut en comporter plus de {{ limit }}"

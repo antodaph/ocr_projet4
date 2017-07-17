@@ -1,0 +1,49 @@
+# src/OC/PlatformBundle/Resources/translations/messages.en.yml
+
+hello: Hello %name%!
+Bye: 'Good Bye'
+"Attention : cette annonce sera ajoutée directement\n        sur la page d'accueil après validation du formulaire.": "__Attention : cette annonce sera ajoutée directement\n        sur la page d'accueil après validation du formulaire."
+charte:
+    titre: Mentions légales
+    donnee:
+        # Le chevron « > » en début de chaîne indique que la chaîne cible est sur
+        # plusieurs lignes, mais les retours à la ligne ne seront pas présents
+        # dans le code HTML, car ils seront remplacés par des espaces.
+        # L'indentation doit être faite sur tout le paragraphe.
+        premier_paragraphe: >
+            OpenClassrooms recueille des informations (login, e-mail) lors de 
+            votre enregistrement en tant que membre du site. Lors de votre
+            connexion au site, un fichier "log" stocke les actions effectuées
+            par votre ordinateur (via son adresse IP) au serveur.
+
+        # La pipe « | » permet la même chose, mais les retours à la ligne seront
+        # présents dans le code HTML, et non remplacés par des espaces.
+        # Vous pouvez utiliser nl2br() sur une telle chaîne, cela permet
+        # d'avoir le code comme présenté ci-dessous (l'indendation en moins).
+        deuxieme_paragraphe: |
+            Lorsque que vous vous connectez en tant que membre 
+            de OpenClassrooms et que vous cochez la case correspondante, 
+            un cookie est envoyé à votre
+            ordinateur afin qu'il se souvienne de votre login et de votre mot de
+            passe. Ceci vous est proposé uniquement afin d'automatiser la
+            procédure de connexion, et n'est en aucun cas utilisé par Simple IT à
+            d'autres fins.
+
+# 
+charte2:
+    titre: Mentions légales
+    donnee:
+        # les éléments de liste sont précédés d'un tiret en YAML
+        - >
+            OpenClassrooms recueille des informations (login, e-mail) lors de
+            votre enregistrement en tant que membre du site. Lors de votre
+            connexion au site, un fichier "log" stocke les actions effectuées
+            par votre ordinateur (via son adresse IP) au serveur.
+        - |
+            Lorsque que vous vous connectez en tant que membre de OpenClassrooms et
+            que vous cochez la case correspondante, un cookie est envoyé à votre
+            ordinateur afin qu'il se souvienne de votre login et de votre mot de
+            passe. Ceci vous est proposé uniquement afin d'automatiser la
+            procédure de connexion, et n'est en aucun cas utilisé par Simple IT à
+            d'autres fins.
+        - Merci de votre attention.

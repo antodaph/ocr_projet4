@@ -1,0 +1,76 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    encoders:
+        #Symfony\Component\Security\Core\User\User: plaintext
+        OC\UserBundle\Entity\User: sha512
+
+    role_hierarchy:
+        # Un admin hérite des droits d'auteur et de modérateur
+        ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR, ROLE_USER]
+        # On garde ce rôle superadmin, il nous resservira par la suite
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        #in_memory:
+        #    memory:
+        #        users:
+        #            user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+        #            admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        # Et voici notre nouveau fournisseur :
+        OC_db_provider: # Nom du provider
+            # id: fos_user.user_provider.username
+            entity: # type de provider
+                class:    OC\UserBundle\Entity\User
+                property: username
+
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern:   ^/
+            logout:       true
+            anonymous:    true
+            
+            guard:
+                authenticators:
+                    - oc.form.form_authenticator
+            #anonymous: true
+            #provider: main
+            # activate different ways to authenticate
+            
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
+            #form_login:
+            #    login_path: fos_user_security_login
+            #    check_path: fos_user_security_check
+            #logout:
+            #    path:       fos_user_security_logout
+            #    target:     /platform
+            form_login:
+                login_path: login 
+                check_path: login 
+                provider: OC_db_provider
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path:       /logout
+                target:     /
+            remember_me:
+                secret:     %secret% # %secret% est un paramètre de parameter
+            
+    access_control:
+        #- { path: ^/admin, ip: 127.0.0.1, requires_channel: https }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
